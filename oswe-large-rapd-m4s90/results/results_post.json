@@ -1,0 +1,13 @@
+{
+  "summary": {"total": 7, "passed": 7, "failed": 0},
+  "cases": {
+    "healthy_positive_weights": {"status": "passed", "algorithm": "dijkstra", "path": ["A", "C", "B"], "cost": 3.0},
+    "negative_edge_supported": {"status": "passed", "algorithm": "bellman_ford", "path": ["A", "C", "D", "F", "B"], "cost": 1.0},
+    "negative_cycle": {"status": "passed", "error_contains": "negative-weight cycle"},
+    "no_path": {"status": "passed", "error_contains": "No path"},
+    "idempotent_repeat_first": {"status": "passed"},
+    "idempotent_repeat_second": {"status": "passed", "idempotent": true},
+    "timeout_retry": {"status": "passed", "retries": 1}
+  },
+  "metrics": {"success": 5, "failure": 2, "idempotent_hits": 1, "graph_load_attempts": 6}
+}

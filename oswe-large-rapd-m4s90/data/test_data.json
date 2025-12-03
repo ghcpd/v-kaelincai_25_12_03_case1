@@ -1,0 +1,101 @@
+[
+  {
+    "name": "healthy_positive_weights",
+    "description": "All positive weights, Dijkstra shortest path",
+    "request_id": "req-healthy",
+    "graph": {
+      "edges": [
+        {"source": "A", "target": "B", "weight": 10},
+        {"source": "A", "target": "C", "weight": 1},
+        {"source": "C", "target": "B", "weight": 2}
+      ]
+    },
+    "source": "A",
+    "target": "B",
+    "expected": {"algorithm": "dijkstra", "path": ["A", "C", "B"], "cost": 3.0, "status": "success"}
+  },
+  {
+    "name": "negative_edge_supported",
+    "description": "Negative edge without negative cycle -> Bellman-Ford",
+    "request_id": "req-negative-edge",
+    "graph": {
+      "edges": [
+        {"source": "A", "target": "B", "weight": 5},
+        {"source": "A", "target": "C", "weight": 2},
+        {"source": "C", "target": "D", "weight": 1},
+        {"source": "D", "target": "F", "weight": -3},
+        {"source": "F", "target": "B", "weight": 1},
+        {"source": "A", "target": "E", "weight": 1},
+        {"source": "E", "target": "B", "weight": 6}
+      ]
+    },
+    "source": "A",
+    "target": "B",
+    "expected": {"algorithm": "bellman_ford", "path": ["A", "C", "D", "F", "B"], "cost": 1.0, "status": "success"}
+  },
+  {
+    "name": "negative_cycle",
+    "description": "Negative cycle should fail",
+    "request_id": "req-negative-cycle",
+    "graph": {
+      "edges": [
+        {"source": "A", "target": "B", "weight": 1},
+        {"source": "B", "target": "C", "weight": -2},
+        {"source": "C", "target": "A", "weight": -2}
+      ]
+    },
+    "source": "A",
+    "target": "B",
+    "expected": {"status": "failure", "error_contains": "negative-weight cycle"}
+  },
+  {
+    "name": "no_path",
+    "description": "No path from A to D",
+    "request_id": "req-no-path",
+    "graph": {
+      "edges": [
+        {"source": "A", "target": "B", "weight": 1},
+        {"source": "C", "target": "D", "weight": 1}
+      ]
+    },
+    "source": "A",
+    "target": "D",
+    "expected": {"status": "failure", "error_contains": "No path"}
+  },
+  {
+    "name": "idempotent_repeat_first",
+    "description": "Idempotency: first call",
+    "request_id": "req-idem",
+    "graph": {
+      "edges": [
+        {"source": "A", "target": "B", "weight": 2}
+      ]
+    },
+    "source": "A",
+    "target": "B",
+    "expected": {"status": "success", "path": ["A", "B"], "cost": 2.0}
+  },
+  {
+    "name": "idempotent_repeat_second",
+    "description": "Idempotency: second call should hit cache",
+    "request_id": "req-idem",
+    "graph": {
+      "edges": [
+        {"source": "A", "target": "B", "weight": 999}
+      ]
+    },
+    "source": "A",
+    "target": "B",
+    "expected": {"status": "success", "path": ["A", "B"], "cost": 2.0, "idempotent": true}
+  },
+  {
+    "name": "timeout_retry",
+    "description": "Retry on transient API failure",
+    "request_id": "req-retry",
+    "use_mock_api": true,
+    "mock_params": {"mode": "pending", "failures_before_success": 1},
+    "source": "A",
+    "target": "B",
+    "expected": {"status": "success", "path": ["A", "C", "D", "F", "B"], "cost": 1.0, "retries": 1}
+  }
+]

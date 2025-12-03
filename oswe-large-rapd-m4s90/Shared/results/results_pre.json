@@ -1,0 +1,7 @@
+{
+  "summary": {"note": "Legacy expected to fail for negative weights"},
+  "cases": {
+    "negative_edge_supported": {"status": "failed", "path": ["A", "B"], "cost": 5},
+    "negative_cycle": {"status": "failed", "error": "algorithm unsuitable"}
+  }
+}

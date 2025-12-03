@@ -1,0 +1,9 @@
+{
+  "healthy_positive_weights": {"algorithm": "dijkstra", "path": ["A", "C", "B"], "cost": 3.0, "status": "success"},
+  "negative_edge_supported": {"algorithm": "bellman_ford", "path": ["A", "C", "D", "F", "B"], "cost": 1.0, "status": "success"},
+  "negative_cycle": {"status": "failure", "error_contains": "negative-weight cycle"},
+  "no_path": {"status": "failure", "error_contains": "No path"},
+  "idempotent_repeat_first": {"status": "success", "path": ["A", "B"], "cost": 2.0},
+  "idempotent_repeat_second": {"status": "success", "path": ["A", "B"], "cost": 2.0, "idempotent": true},
+  "timeout_retry": {"status": "success", "path": ["A", "C", "D", "F", "B"], "cost": 1.0, "retries": 1}
+}
