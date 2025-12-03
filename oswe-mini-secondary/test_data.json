@@ -1,0 +1,5 @@
+{
+  "cases": [
+    {"id": "negative-edges", "file": "data/graph_negative_weight.json", "start": "A", "goal": "B"}
+  ]
+}
