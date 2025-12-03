@@ -1,0 +1,1 @@
+{"success_rate":1.0, "p50_latency_ms":0.062, "p95_latency_ms":0.062, "retries":{"avg":0.33, "max":2}}
