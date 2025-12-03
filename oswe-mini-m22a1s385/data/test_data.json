@@ -1,0 +1,6 @@
+{
+  "cases": [
+    {"name":"healthy","edges":[{"source":"A","target":"B","weight":1}]},
+    {"name":"negative","edges":[{"source":"A","target":"C","weight":2},{"source":"C","target":"D","weight":1},{"source":"D","target":"F","weight":-3},{"source":"F","target":"B","weight":1}]}
+  ]
+}
