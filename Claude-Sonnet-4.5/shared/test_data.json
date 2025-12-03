@@ -1,0 +1,120 @@
+[
+  {
+    "id": "TC1",
+    "name": "Idempotency - Duplicate Requests",
+    "request": {
+      "request_id": "test-idempotency-001",
+      "graph_id": "positive_weight",
+      "start_node": "A",
+      "goal_node": "B"
+    },
+    "expected": {
+      "path": ["A", "C", "D", "B"],
+      "cost": 4.0,
+      "algorithm": "dijkstra"
+    }
+  },
+  {
+    "id": "TC2",
+    "name": "Retry with Exponential Backoff",
+    "request": {
+      "request_id": "test-retry-002",
+      "graph_id": "transient_failure",
+      "start_node": "A",
+      "goal_node": "B"
+    },
+    "expected": {
+      "status": "success_after_retry",
+      "retry_count": 1
+    }
+  },
+  {
+    "id": "TC3",
+    "name": "Timeout Propagation",
+    "request": {
+      "request_id": "test-timeout-003",
+      "graph_id": "large_graph",
+      "start_node": "node_0",
+      "goal_node": "node_9999",
+      "options": {"timeout_ms": 2000}
+    },
+    "expected": {
+      "status": "timeout",
+      "error_code": "COMPUTATION_TIMEOUT"
+    }
+  },
+  {
+    "id": "TC4",
+    "name": "Circuit Breaker",
+    "request": {
+      "request_id": "test-circuit-001",
+      "graph_id": "broken_graph",
+      "start_node": "A",
+      "goal_node": "B"
+    },
+    "expected": {
+      "circuit_state": "open_after_failures",
+      "fail_fast_latency_ms": 10
+    }
+  },
+  {
+    "id": "TC5",
+    "name": "Negative Weight Handling",
+    "request": {
+      "request_id": "test-negative-005",
+      "graph_id": "negative_weight",
+      "start_node": "A",
+      "goal_node": "B"
+    },
+    "expected": {
+      "path": ["A", "C", "D", "F", "B"],
+      "cost": 1.0,
+      "algorithm": "bellman_ford"
+    }
+  },
+  {
+    "id": "TC6",
+    "name": "Negative Cycle Detection",
+    "request": {
+      "request_id": "test-cycle-006",
+      "graph_id": "negative_cycle",
+      "start_node": "A",
+      "goal_node": "B"
+    },
+    "expected": {
+      "status": "error",
+      "error_code": "NEGATIVE_CYCLE_DETECTED",
+      "cycle": ["A", "B", "C", "A"]
+    }
+  },
+  {
+    "id": "TC7",
+    "name": "Healthy Path (Positive Weights)",
+    "request": {
+      "request_id": "test-healthy-007",
+      "graph_id": "positive_weight",
+      "start_node": "A",
+      "goal_node": "B"
+    },
+    "expected": {
+      "path": ["A", "C", "D", "B"],
+      "cost": 4.0,
+      "algorithm": "dijkstra",
+      "latency_p95_ms": 50
+    }
+  },
+  {
+    "id": "TC8",
+    "name": "Audit Trail & Structured Logging",
+    "request": {
+      "request_id": "test-audit-008",
+      "graph_id": "positive_weight",
+      "start_node": "A",
+      "goal_node": "B"
+    },
+    "expected": {
+      "log_fields": ["timestamp", "level", "request_id", "graph_id", "algorithm"],
+      "format": "json"
+    }
+  }
+]
