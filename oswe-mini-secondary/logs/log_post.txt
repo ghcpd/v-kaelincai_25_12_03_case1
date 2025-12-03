@@ -1,0 +1,2 @@
+{"request_id":"0001","message":"start","start":"A","goal":"B"}
+{"request_id":"0001","message":"succeeded","result":{"path":["A","C","D","F","B"],"cost":1.0},"outbox_id":"abc"}

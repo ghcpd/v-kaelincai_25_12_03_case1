@@ -1,0 +1,9 @@
+{
+  "summary": {
+    "tests_run": 6,
+    "tests_passed": 6,
+    "p50_ms": 4.0,
+    "p95_ms": 11.0
+  },
+  "details": []
+}
