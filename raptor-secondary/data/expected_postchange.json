@@ -1,0 +1,7 @@
+{
+  "happy-path-01": {"state": "CONFIRMED", "idempotent_hit": false},
+  "idempotent-retry": {"state": "CONFIRMED", "idempotent_hit": true},
+  "timeout-simulated": {"state": "FAILED", "last_error": "timeout"},
+  "compensation-needed": {"state": "COMPENSATED"},
+  "flaky-retry-success": {"state": "CONFIRMED", "min_retries": 1}
+}
