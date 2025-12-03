@@ -1,0 +1,329 @@
+{
+  "canonical_test_cases": [
+    {
+      "case_id": "TC-001",
+      "name": "simple_non_negative",
+      "description": "Dijkstra baseline: shortest path in non-negative graph",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": 5},
+          {"source": "A", "target": "C", "weight": 2},
+          {"source": "C", "target": "B", "weight": 1}
+        ]
+      },
+      "start": "A",
+      "goal": "B",
+      "expected": {
+        "path": ["A", "C", "B"],
+        "cost": 3.0,
+        "algorithm": "dijkstra",
+        "status": "success",
+        "error_code": null
+      },
+      "preconditions": [],
+      "acceptance_criteria": "Path cost must be exactly 3.0; algorithm must be dijkstra"
+    },
+    {
+      "case_id": "TC-002",
+      "name": "negative_edge_bellman_ford",
+      "description": "Negative edge (no cycle): Bellman-Ford selected automatically, correct path found",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": 5},
+          {"source": "A", "target": "C", "weight": 2},
+          {"source": "C", "target": "D", "weight": 1},
+          {"source": "D", "target": "F", "weight": -3},
+          {"source": "F", "target": "B", "weight": 1},
+          {"source": "A", "target": "E", "weight": 1},
+          {"source": "E", "target": "B", "weight": 6}
+        ]
+      },
+      "start": "A",
+      "goal": "B",
+      "expected": {
+        "path": ["A", "C", "D", "F", "B"],
+        "cost": 1.0,
+        "algorithm": "bellman_ford",
+        "status": "success",
+        "error_code": null
+      },
+      "preconditions": [],
+      "acceptance_criteria": "Path cost must be <= 1.0; algorithm must be bellman_ford (negative weight detected)"
+    },
+    {
+      "case_id": "TC-003",
+      "name": "negative_cycle_detection",
+      "description": "Negative cycle present: rejected with error_code=NEG_CYCLE",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": -1},
+          {"source": "B", "target": "C", "weight": -1},
+          {"source": "C", "target": "A", "weight": -1}
+        ]
+      },
+      "start": "A",
+      "goal": "C",
+      "expected": {
+        "path": null,
+        "cost": null,
+        "algorithm": null,
+        "status": "error",
+        "error_code": "NEG_CYCLE"
+      },
+      "preconditions": [],
+      "acceptance_criteria": "Must detect negative cycle and return error_code=NEG_CYCLE without hanging"
+    },
+    {
+      "case_id": "TC-004",
+      "name": "idempotency_cache_hit",
+      "description": "Same request twice: 2nd call served from cache, duration_ms << 1st call",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": 1},
+          {"source": "B", "target": "C", "weight": 2}
+        ]
+      },
+      "start": "A",
+      "goal": "C",
+      "expected": {
+        "call_1": {
+          "path": ["A", "B", "C"],
+          "cost": 3.0,
+          "cache_hit": false
+        },
+        "call_2": {
+          "path": ["A", "B", "C"],
+          "cost": 3.0,
+          "cache_hit": true,
+          "duration_ms_max": 5
+        }
+      },
+      "preconditions": ["Same request_id for both calls"],
+      "acceptance_criteria": "2nd call must be served from cache; duration_ms(call_2) < 5ms"
+    },
+    {
+      "case_id": "TC-005",
+      "name": "node_not_found_goal",
+      "description": "Goal node not in graph: rejected with error_code=NODE_NOT_FOUND",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": 1}
+        ]
+      },
+      "start": "A",
+      "goal": "Z",
+      "expected": {
+        "path": null,
+        "cost": null,
+        "status": "error",
+        "error_code": "NODE_NOT_FOUND"
+      },
+      "preconditions": [],
+      "acceptance_criteria": "Must validate nodes exist before computation; error_code=NODE_NOT_FOUND"
+    },
+    {
+      "case_id": "TC-006",
+      "name": "node_not_found_start",
+      "description": "Start node not in graph: rejected with error_code=NODE_NOT_FOUND",
+      "graph": {
+        "edges": [
+          {"source": "B", "target": "C", "weight": 1}
+        ]
+      },
+      "start": "A",
+      "goal": "C",
+      "expected": {
+        "path": null,
+        "cost": null,
+        "status": "error",
+        "error_code": "NODE_NOT_FOUND"
+      },
+      "preconditions": [],
+      "acceptance_criteria": "Must validate start node exists; error_code=NODE_NOT_FOUND"
+    },
+    {
+      "case_id": "TC-007",
+      "name": "empty_graph",
+      "description": "Empty graph (no edges/nodes): rejected with error_code=EMPTY_GRAPH",
+      "graph": {
+        "edges": []
+      },
+      "start": "A",
+      "goal": "B",
+      "expected": {
+        "path": null,
+        "cost": null,
+        "status": "error",
+        "error_code": "EMPTY_GRAPH"
+      },
+      "preconditions": [],
+      "acceptance_criteria": "Must detect empty graph before attempting routing; error_code=EMPTY_GRAPH"
+    },
+    {
+      "case_id": "TC-008",
+      "name": "single_node_same_start_goal",
+      "description": "Start equals goal: path=[A], cost=0",
+      "graph": {
+        "edges": []
+      },
+      "start": "A",
+      "goal": "A",
+      "expected": {
+        "path": ["A"],
+        "cost": 0.0,
+        "status": "success"
+      },
+      "preconditions": ["Single node graph or start==goal"],
+      "acceptance_criteria": "Path must be [start]; cost=0.0"
+    },
+    {
+      "case_id": "TC-009",
+      "name": "disconnected_no_path",
+      "description": "Start and goal in disconnected components: no path found",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": 1},
+          {"source": "C", "target": "D", "weight": 1}
+        ]
+      },
+      "start": "A",
+      "goal": "D",
+      "expected": {
+        "path": null,
+        "cost": null,
+        "status": "error",
+        "error_code": "NO_PATH_FOUND"
+      },
+      "preconditions": [],
+      "acceptance_criteria": "Must detect unreachable goal; error_code=NO_PATH_FOUND"
+    },
+    {
+      "case_id": "TC-010",
+      "name": "complex_negative_with_positive",
+      "description": "Mixed negative and positive edges: Bellman-Ford finds optimal",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": 4},
+          {"source": "A", "target": "C", "weight": 2},
+          {"source": "B", "target": "C", "weight": 1},
+          {"source": "B", "target": "D", "weight": 5},
+          {"source": "C", "target": "D", "weight": -4},
+          {"source": "D", "target": "E", "weight": 3}
+        ]
+      },
+      "start": "A",
+      "goal": "E",
+      "expected": {
+        "path": ["A", "C", "D", "E"],
+        "cost": 1.0,
+        "algorithm": "bellman_ford",
+        "status": "success"
+      },
+      "preconditions": [],
+      "acceptance_criteria": "Path cost must be exactly 1.0; algorithm=bellman_ford (negative edge present)"
+    }
+  ],
+  "stress_test_cases": [
+    {
+      "case_id": "STRESS-001",
+      "name": "large_graph_dijkstra",
+      "description": "Large non-negative graph (1000 nodes, 5000 edges): latency p99 < 200ms",
+      "graph_generator": "random_dag(nodes=1000, edges=5000, min_weight=1, max_weight=100)",
+      "start": "node_0",
+      "goal": "node_999",
+      "expected": {
+        "status": "success",
+        "algorithm": "dijkstra",
+        "latency_p99_ms": 200
+      },
+      "acceptance_criteria": "Computation completes in < 200ms; no timeout"
+    },
+    {
+      "case_id": "STRESS-002",
+      "name": "large_graph_bellman_ford",
+      "description": "Large graph with negative edges (500 nodes, 2000 edges): latency p99 < 1000ms",
+      "graph_generator": "random_dag(nodes=500, edges=2000, min_weight=-50, max_weight=100)",
+      "start": "node_0",
+      "goal": "node_499",
+      "expected": {
+        "status": "success",
+        "algorithm": "bellman_ford",
+        "latency_p99_ms": 1000
+      },
+      "acceptance_criteria": "Computation completes in < 1000ms; no timeout"
+    },
+    {
+      "case_id": "STRESS-003",
+      "name": "concurrent_requests",
+      "description": "10 concurrent requests on same graph: all complete successfully, no race conditions",
+      "graph": "TC-001 graph (simple)",
+      "concurrency": 10,
+      "expected": {
+        "all_success": true,
+        "no_data_corruption": true,
+        "latency_p50_ms": 10
+      },
+      "acceptance_criteria": "100% success rate; identical results across concurrent calls"
+    }
+  ],
+  "edge_cases": [
+    {
+      "case_id": "EDGE-001",
+      "name": "self_loop",
+      "description": "Edge from node to itself (A→A): should be ignored or warned",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "A", "weight": 5},
+          {"source": "A", "target": "B", "weight": 1}
+        ]
+      },
+      "start": "A",
+      "goal": "B",
+      "expected": {
+        "path": ["A", "B"],
+        "cost": 1.0,
+        "status": "success"
+      },
+      "acceptance_criteria": "Self-loop ignored; correct path found"
+    },
+    {
+      "case_id": "EDGE-002",
+      "name": "zero_weight_edge",
+      "description": "Edge with zero weight (A→B, w=0): valid, included in path",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": 0},
+          {"source": "B", "target": "C", "weight": 1}
+        ]
+      },
+      "start": "A",
+      "goal": "C",
+      "expected": {
+        "path": ["A", "B", "C"],
+        "cost": 1.0,
+        "status": "success"
+      },
+      "acceptance_criteria": "Zero-weight edge handled correctly; path cost = 1.0"
+    },
+    {
+      "case_id": "EDGE-003",
+      "name": "floating_point_precision",
+      "description": "Weights with decimal precision: cost accumulated correctly",
+      "graph": {
+        "edges": [
+          {"source": "A", "target": "B", "weight": 0.1},
+          {"source": "B", "target": "C", "weight": 0.2},
+          {"source": "C", "target": "D", "weight": 0.3}
+        ]
+      },
+      "start": "A",
+      "goal": "D",
+      "expected": {
+        "path": ["A", "B", "C", "D"],
+        "cost": 0.6,
+        "status": "success"
+      },
+      "acceptance_criteria": "Cost must be 0.6 (within floating-point epsilon)"
+    }
+  ]
+}
