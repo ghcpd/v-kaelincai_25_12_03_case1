@@ -1,1 +1,34 @@
 Role & Scope
+Role: Senior architecture and delivery engineer.
+Mission: Analyze the legacy system and design a greenfield replacement (not an in-place refactor).
+Workspace: Create relevant project files under [raptor-secondary].
+
+Object & Inputs
+Object: [issue_project]
+Input assets (optional): Codebase, APIs/Schemas, logs, monitoring, test commands, run recordings, etc. [[links or summaries]]
+
+Activities (Analyze → Conclude)
+3.1 Clarification & Data Collection
+
+List missing data/assumptions.
+Draft a collection checklist: code, logs, traffic, DB snapshots.
+3.2 Background Reconstruction (Model Output)
+
+From visible assets, infer legacy business context, core flows, boundaries, dependencies.
+Highlight uncertainties.
+3.3 Current-State Scan & Root-Cause Analysis
+
+Identify issues by category: Functionality, Performance, Reliability, Security, Maintainability, Cost.
+Provide a table: Category | Symptom | Likely Root Cause | Evidence / Needed Evidence.
+For high-priority issues: give hypothesis chains and validation methods; if issues are known, provide fix paths with causal chains.
+3.4 New System Design (Greenfield Replacement)
+
+Target state: capability boundaries, service decomposition, unified state machine, idempotency/retry/timeout/circuit-breaker strategies, compensation (Saga/outbox).
+Architecture and data flow: prose plus ASCII diagrams; key interfaces/Schemas/validation (including field constraints).
+Migration and parallel run (if needed): read/write cutover, backfill, dual-write/shadow traffic, rollback paths.
+3.5 Testing & Acceptance (Dynamically Generated)
+
+Derive at least 5 repeatable integration tests from crash points/risks.
+Each test case: Target issue | Preconditions/Data | Steps | Expected outcome | Observability assertions (logs/metrics/events).
+Coverage: idempotency; retry with backoff; timeout propagation/circuit breaking; compensation/Saga/outbox; audit/reconciliation; healthy path. If a risk does not exist, state why.
+Acceptance criteria: Given-When-Then or quantified SLO/SLA.
