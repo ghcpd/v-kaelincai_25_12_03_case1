@@ -1,0 +1,53 @@
+[
+  {
+    "id": "happy-path-01",
+    "request_id": "req-001",
+    "customer_id": "cust-123",
+    "appointment_time": "2025-12-10T10:00:00Z",
+    "duration_minutes": 30,
+    "location": "A",
+    "provider_id": "prov-1",
+    "priority": "NORMAL"
+  },
+  {
+    "id": "idempotent-retry",
+    "request_id": "req-002",
+    "customer_id": "cust-123",
+    "appointment_time": "2025-12-10T11:00:00Z",
+    "duration_minutes": 30,
+    "location": "A",
+    "provider_id": "prov-1",
+    "priority": "NORMAL",
+    "replay_request_id": "req-002"  
+  },
+  {
+    "id": "timeout-simulated",
+    "request_id": "req-003",
+    "customer_id": "cust-456",
+    "appointment_time": "2025-12-10T12:00:00Z",
+    "duration_minutes": 60,
+    "location": "B",
+    "provider_id": "prov-2",
+    "priority": "NORMAL"
+  },
+  {
+    "id": "compensation-needed",
+    "request_id": "req-004",
+    "customer_id": "cust-789",
+    "appointment_time": "2025-12-10T13:00:00Z",
+    "duration_minutes": 45,
+    "location": "C",
+    "provider_id": "prov-3",
+    "priority": "HIGH"
+  },
+  {
+    "id": "audit-reconciliation",
+    "request_id": "req-005",
+    "customer_id": "cust-audit",
+    "appointment_time": "2025-12-10T14:00:00Z",
+    "duration_minutes": 15,
+    "location": "D",
+    "provider_id": "prov-4",
+    "priority": "LOW"
+  }
+]

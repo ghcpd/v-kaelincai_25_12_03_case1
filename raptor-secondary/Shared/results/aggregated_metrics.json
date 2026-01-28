@@ -1,0 +1,14 @@
+{
+  "pre_failures": 2,
+  "post_failures": null,
+  "pre_summary": {
+    "failed": 2,
+    "total": 2,
+    "collected": 2
+  },
+  "post_summary": {
+    "passed": 6,
+    "total": 6,
+    "collected": 6
+  }
+}

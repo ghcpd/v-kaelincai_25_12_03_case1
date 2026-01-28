@@ -1,0 +1,175 @@
+logging_configured_test
+{"service": "appointment_service", "request_id": "re***01", "event": "started", "timestamp": "2025-12-03T03:09:28.484992Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***01", "event_id": "ebbbb293-c874-465a-84cb-55332a440d85", "event": "confirmed", "timestamp": "2025-12-03T03:09:28.491711Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "event": "started", "timestamp": "2025-12-03T03:09:28.498597Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***02", "event_id": "38e9d1c1-bce6-444d-8f25-cf19f630201f", "event": "confirmed", "timestamp": "2025-12-03T03:09:28.504624Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "state": "AppointmentState.CONFIRMED", "event": "idempotent_hit", "timestamp": "2025-12-03T03:09:28.504777Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***05", "event": "started", "timestamp": "2025-12-03T03:09:28.507676Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 500 Internal Server Error"
+{"service": "appointment_service", "request_id": "re***05", "attempt": 1, "error": "Server error '500 Internal Server Error' for url 'http://testserver/api/v2/schedule'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500", "event": "schedule_error", "timestamp": "2025-12-03T03:09:28.513445Z", "level": "warning"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***05", "event_id": "d161b97d-4eab-43f4-8665-0cb644205eb7", "event": "confirmed", "timestamp": "2025-12-03T03:09:28.569066Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "event": "started", "timestamp": "2025-12-03T03:09:28.571680Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 1, "event": "schedule_timeout", "timestamp": "2025-12-03T03:09:28.571846Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 2, "event": "schedule_timeout", "timestamp": "2025-12-03T03:09:28.622658Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 3, "event": "schedule_timeout", "timestamp": "2025-12-03T03:09:28.723166Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempts": 3, "event": "failed_exhausted", "timestamp": "2025-12-03T03:09:28.723342Z", "level": "error"}
+{"service": "appointment_service", "request_id": "re***is", "event": "started", "timestamp": "2025-12-03T03:09:28.723533Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***is", "event": "circuit_open", "timestamp": "2025-12-03T03:09:28.723613Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***04", "event": "started", "timestamp": "2025-12-03T03:09:28.727966Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***04", "event_id": "573a6324-626f-4834-9d39-020d7c68e2ba", "event": "confirmed", "timestamp": "2025-12-03T03:09:28.733951Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/cancel "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "req-004", "event_id": "78113137-8055-41ae-8af8-94922d22c626", "event": "compensated", "timestamp": "2025-12-03T03:09:28.741689Z", "level": "info"}
+logging_configured_test
+{"service": "appointment_service", "request_id": "re***01", "event": "started", "timestamp": "2025-12-03T03:09:46.966012Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***01", "event_id": "4ce3b105-5d1c-4ec4-8519-37f53e73b701", "event": "confirmed", "timestamp": "2025-12-03T03:09:46.970028Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "event": "started", "timestamp": "2025-12-03T03:09:46.972755Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***02", "event_id": "a8c2fbd4-190a-434f-a906-945989b2834d", "event": "confirmed", "timestamp": "2025-12-03T03:09:46.978423Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "state": "AppointmentState.CONFIRMED", "event": "idempotent_hit", "timestamp": "2025-12-03T03:09:46.978538Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***05", "event": "started", "timestamp": "2025-12-03T03:09:46.980805Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 500 Internal Server Error"
+{"service": "appointment_service", "request_id": "re***05", "attempt": 1, "error": "Server error '500 Internal Server Error' for url 'http://testserver/api/v2/schedule'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500", "event": "schedule_error", "timestamp": "2025-12-03T03:09:46.984261Z", "level": "warning"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***05", "event_id": "74eb5f10-71f4-49b2-9dc2-c2a2a5ef94f6", "event": "confirmed", "timestamp": "2025-12-03T03:09:47.038691Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "event": "started", "timestamp": "2025-12-03T03:09:47.042510Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 1, "event": "schedule_timeout", "timestamp": "2025-12-03T03:09:47.042830Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 2, "event": "schedule_timeout", "timestamp": "2025-12-03T03:09:47.093584Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 3, "event": "schedule_timeout", "timestamp": "2025-12-03T03:09:47.194169Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempts": 3, "event": "failed_exhausted", "timestamp": "2025-12-03T03:09:47.194388Z", "level": "error"}
+{"service": "appointment_service", "request_id": "re***is", "event": "started", "timestamp": "2025-12-03T03:09:47.194570Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***is", "event": "circuit_open", "timestamp": "2025-12-03T03:09:47.194672Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***04", "event": "started", "timestamp": "2025-12-03T03:09:47.198306Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***04", "event_id": "2bb79f0c-c6a5-47ff-b70d-e98e71e5115b", "event": "confirmed", "timestamp": "2025-12-03T03:09:47.202727Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/cancel "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "req-004", "event_id": "52da2267-a509-4f37-a6f3-e140a08905de", "event": "compensated", "timestamp": "2025-12-03T03:09:47.206142Z", "level": "info"}
+logging_configured_test
+{"service": "appointment_service", "request_id": "re***01", "event": "started", "timestamp": "2025-12-03T03:11:41.550892Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***01", "event_id": "ca70cd44-ce8f-4c27-8500-8776e4b844d7", "event": "confirmed", "timestamp": "2025-12-03T03:11:41.557047Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "event": "started", "timestamp": "2025-12-03T03:11:41.559847Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***02", "event_id": "da284f78-1526-4137-b52f-643bce87751b", "event": "confirmed", "timestamp": "2025-12-03T03:11:41.563921Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "state": "AppointmentState.CONFIRMED", "event": "idempotent_hit", "timestamp": "2025-12-03T03:11:41.564038Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***05", "event": "started", "timestamp": "2025-12-03T03:11:41.566240Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 500 Internal Server Error"
+{"service": "appointment_service", "request_id": "re***05", "attempt": 1, "error": "Server error '500 Internal Server Error' for url 'http://testserver/api/v2/schedule'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500", "event": "schedule_error", "timestamp": "2025-12-03T03:11:41.570506Z", "level": "warning"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***05", "event_id": "173ad5eb-1e8b-48e8-9ab1-c6a4127ed385", "event": "confirmed", "timestamp": "2025-12-03T03:11:41.626005Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "event": "started", "timestamp": "2025-12-03T03:11:41.628422Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 1, "event": "schedule_timeout", "timestamp": "2025-12-03T03:11:41.628545Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 2, "event": "schedule_timeout", "timestamp": "2025-12-03T03:11:41.679092Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 3, "event": "schedule_timeout", "timestamp": "2025-12-03T03:11:41.779583Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempts": 3, "event": "failed_exhausted", "timestamp": "2025-12-03T03:11:41.779797Z", "level": "error"}
+{"service": "appointment_service", "request_id": "re***is", "event": "started", "timestamp": "2025-12-03T03:11:41.779985Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***is", "event": "circuit_open", "timestamp": "2025-12-03T03:11:41.780075Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***04", "event": "started", "timestamp": "2025-12-03T03:11:41.782659Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***04", "event_id": "e6435782-7da7-4bdc-9b06-3ff9a42596cb", "event": "confirmed", "timestamp": "2025-12-03T03:11:41.787266Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/cancel "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "req-004", "event_id": "96a2ff98-7bf9-4cbc-a176-bbc0f4debcac", "event": "compensated", "timestamp": "2025-12-03T03:11:41.791429Z", "level": "info"}
+logging_configured_test
+{"service": "appointment_service", "request_id": "re***01", "event": "started", "timestamp": "2025-12-03T03:12:54.296258Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***01", "event_id": "cb792a39-9f6f-451c-a40a-6ac8529c98fc", "event": "confirmed", "timestamp": "2025-12-03T03:12:54.303210Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "event": "started", "timestamp": "2025-12-03T03:12:54.306493Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***02", "event_id": "c63963f8-f7b5-4e16-8944-b77f43711719", "event": "confirmed", "timestamp": "2025-12-03T03:12:54.311557Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "state": "AppointmentState.CONFIRMED", "event": "idempotent_hit", "timestamp": "2025-12-03T03:12:54.311653Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***05", "event": "started", "timestamp": "2025-12-03T03:12:54.314286Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 500 Internal Server Error"
+{"service": "appointment_service", "request_id": "re***05", "attempt": 1, "error": "Server error '500 Internal Server Error' for url 'http://testserver/api/v2/schedule'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500", "event": "schedule_error", "timestamp": "2025-12-03T03:12:54.317278Z", "level": "warning"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***05", "event_id": "9b805ac3-1934-44a0-8a84-dca748e48ec5", "event": "confirmed", "timestamp": "2025-12-03T03:12:54.372038Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "event": "started", "timestamp": "2025-12-03T03:12:54.375620Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 1, "event": "schedule_timeout", "timestamp": "2025-12-03T03:12:54.375904Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 2, "event": "schedule_timeout", "timestamp": "2025-12-03T03:12:54.426611Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 3, "event": "schedule_timeout", "timestamp": "2025-12-03T03:12:54.527354Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempts": 3, "event": "failed_exhausted", "timestamp": "2025-12-03T03:12:54.527606Z", "level": "error"}
+{"service": "appointment_service", "request_id": "re***is", "event": "started", "timestamp": "2025-12-03T03:12:54.527834Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***is", "event": "circuit_open", "timestamp": "2025-12-03T03:12:54.527930Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***04", "event": "started", "timestamp": "2025-12-03T03:12:54.530486Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***04", "event_id": "996a073a-601f-48b2-9575-51a314ce0b90", "event": "confirmed", "timestamp": "2025-12-03T03:12:54.534279Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/cancel "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "req-004", "event_id": "29a1b792-4f0b-4618-9a14-55f36e88a6c7", "event": "compensated", "timestamp": "2025-12-03T03:12:54.537181Z", "level": "info"}
+logging_configured_test
+{"service": "appointment_service", "request_id": "re***01", "event": "started", "timestamp": "2025-12-03T03:13:43.766792Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***01", "event_id": "7da92e44-536c-498f-b901-730104b3a7a1", "event": "confirmed", "timestamp": "2025-12-03T03:13:43.773579Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "event": "started", "timestamp": "2025-12-03T03:13:43.777378Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***02", "event_id": "1c6870ff-1d62-42f6-a6ed-55ae3dcb315d", "event": "confirmed", "timestamp": "2025-12-03T03:13:43.782731Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "state": "AppointmentState.CONFIRMED", "event": "idempotent_hit", "timestamp": "2025-12-03T03:13:43.782910Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***05", "event": "started", "timestamp": "2025-12-03T03:13:43.786115Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 500 Internal Server Error"
+{"service": "appointment_service", "request_id": "re***05", "attempt": 1, "error": "Server error '500 Internal Server Error' for url 'http://testserver/api/v2/schedule'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500", "event": "schedule_error", "timestamp": "2025-12-03T03:13:43.791284Z", "level": "warning"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***05", "event_id": "61c94b7d-c3d5-49e0-b7f9-0712601eca32", "event": "confirmed", "timestamp": "2025-12-03T03:13:43.848808Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "event": "started", "timestamp": "2025-12-03T03:13:43.852573Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 1, "event": "schedule_timeout", "timestamp": "2025-12-03T03:13:43.852796Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 2, "event": "schedule_timeout", "timestamp": "2025-12-03T03:13:43.903414Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 3, "event": "schedule_timeout", "timestamp": "2025-12-03T03:13:44.004098Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempts": 3, "event": "failed_exhausted", "timestamp": "2025-12-03T03:13:44.004649Z", "level": "error"}
+{"service": "appointment_service", "request_id": "re***is", "event": "started", "timestamp": "2025-12-03T03:13:44.005202Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***is", "event": "circuit_open", "timestamp": "2025-12-03T03:13:44.005503Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***04", "event": "started", "timestamp": "2025-12-03T03:13:44.012270Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***04", "event_id": "756b577e-6d81-4d99-b155-dc4f092ffc55", "event": "confirmed", "timestamp": "2025-12-03T03:13:44.023085Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/cancel "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "req-004", "event_id": "138a0215-efd1-4f62-91aa-12f4377f0c20", "event": "compensated", "timestamp": "2025-12-03T03:13:44.033347Z", "level": "info"}
+logging_configured_test
+{"service": "appointment_service", "request_id": "re***01", "event": "started", "timestamp": "2025-12-03T04:39:28.862349Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***01", "event_id": "49fa29bc-8940-45c5-8ee9-ed1ba42ca641", "event": "confirmed", "timestamp": "2025-12-03T04:39:28.870709Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "event": "started", "timestamp": "2025-12-03T04:39:28.873812Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***02", "event_id": "2a1dc635-e707-46aa-ac1a-263ee422ed14", "event": "confirmed", "timestamp": "2025-12-03T04:39:28.878455Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "state": "AppointmentState.CONFIRMED", "event": "idempotent_hit", "timestamp": "2025-12-03T04:39:28.878594Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***05", "event": "started", "timestamp": "2025-12-03T04:39:28.881845Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 500 Internal Server Error"
+{"service": "appointment_service", "request_id": "re***05", "attempt": 1, "error": "Server error '500 Internal Server Error' for url 'http://testserver/api/v2/schedule'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500", "event": "schedule_error", "timestamp": "2025-12-03T04:39:28.886565Z", "level": "warning"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***05", "event_id": "2ba9121b-453c-440f-b4b2-cbd2679cadbb", "event": "confirmed", "timestamp": "2025-12-03T04:39:28.941625Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "event": "started", "timestamp": "2025-12-03T04:39:28.945128Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 1, "event": "schedule_timeout", "timestamp": "2025-12-03T04:39:28.945368Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 2, "event": "schedule_timeout", "timestamp": "2025-12-03T04:39:28.996146Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 3, "event": "schedule_timeout", "timestamp": "2025-12-03T04:39:29.096931Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempts": 3, "event": "failed_exhausted", "timestamp": "2025-12-03T04:39:29.097339Z", "level": "error"}
+{"service": "appointment_service", "request_id": "re***is", "event": "started", "timestamp": "2025-12-03T04:39:29.097708Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***is", "event": "circuit_open", "timestamp": "2025-12-03T04:39:29.097883Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***04", "event": "started", "timestamp": "2025-12-03T04:39:29.102753Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***04", "event_id": "a6aff203-fe1e-41c1-bb27-0fb20069c3f7", "event": "confirmed", "timestamp": "2025-12-03T04:39:29.107846Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/cancel "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "req-004", "event_id": "c7ca1c30-5749-4764-a0e5-168f11f441be", "event": "compensated", "timestamp": "2025-12-03T04:39:29.112623Z", "level": "info"}
+logging_configured_test
+{"service": "appointment_service", "request_id": "re***01", "event": "started", "timestamp": "2025-12-03T04:40:01.506770Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***01", "event_id": "b751fbbb-225b-4e43-b248-c6431d133df0", "event": "confirmed", "timestamp": "2025-12-03T04:40:01.512875Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "event": "started", "timestamp": "2025-12-03T04:40:01.516065Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***02", "event_id": "9b3b15ac-a81f-4669-9610-a8cf9a42bb87", "event": "confirmed", "timestamp": "2025-12-03T04:40:01.521547Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***02", "state": "AppointmentState.CONFIRMED", "event": "idempotent_hit", "timestamp": "2025-12-03T04:40:01.521701Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***05", "event": "started", "timestamp": "2025-12-03T04:40:01.526090Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 500 Internal Server Error"
+{"service": "appointment_service", "request_id": "re***05", "attempt": 1, "error": "Server error '500 Internal Server Error' for url 'http://testserver/api/v2/schedule'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500", "event": "schedule_error", "timestamp": "2025-12-03T04:40:01.531262Z", "level": "warning"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***05", "event_id": "84a5f655-71d0-43d7-bdf7-04eb9cb4339a", "event": "confirmed", "timestamp": "2025-12-03T04:40:01.588437Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "event": "started", "timestamp": "2025-12-03T04:40:01.591887Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 1, "event": "schedule_timeout", "timestamp": "2025-12-03T04:40:01.592155Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 2, "event": "schedule_timeout", "timestamp": "2025-12-03T04:40:01.642504Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempt": 3, "event": "schedule_timeout", "timestamp": "2025-12-03T04:40:01.743180Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***03", "attempts": 3, "event": "failed_exhausted", "timestamp": "2025-12-03T04:40:01.743447Z", "level": "error"}
+{"service": "appointment_service", "request_id": "re***is", "event": "started", "timestamp": "2025-12-03T04:40:01.743767Z", "level": "info"}
+{"service": "appointment_service", "request_id": "re***is", "event": "circuit_open", "timestamp": "2025-12-03T04:40:01.743863Z", "level": "warning"}
+{"service": "appointment_service", "request_id": "re***04", "event": "started", "timestamp": "2025-12-03T04:40:01.748487Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/schedule "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "re***04", "event_id": "21a6c955-90f7-40bd-bf5c-ab19c8356e29", "event": "confirmed", "timestamp": "2025-12-03T04:40:01.753567Z", "level": "info"}
+HTTP Request: POST http://testserver/api/v2/cancel "HTTP/1.1 200 OK"
+{"service": "appointment_service", "request_id": "req-004", "event_id": "0e4967cb-cc58-4fe8-b6ee-8f0465c78157", "event": "compensated", "timestamp": "2025-12-03T04:40:01.757247Z", "level": "info"}
